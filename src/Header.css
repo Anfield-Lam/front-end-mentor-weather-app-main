@@ -9,7 +9,7 @@
   height: 30px;
 }
 
-.dropDownList {
+.dropDownListButton {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,4 +22,15 @@
 
 .unitsName {
   padding: 0 5px;
+}
+
+.dropDownList {
+  position: absolute;
+  z-index: 50;
+  right: 1rem;
+  top: calc(1rem + 30px);
+}
+
+.dropDownList ol {
+  list-style-type: none;
 }
