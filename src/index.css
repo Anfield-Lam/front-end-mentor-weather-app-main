@@ -1,6 +1,15 @@
+@font-face {
+  font-family: 'BriVariableFont';
+  src: url('./assets/fonts/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('ttf');
+  font-weight: 300 700; /* variable range */
+  font-style: normal;
+}
+
+
 body {
   margin: 0;
   box-sizing: border-box;
   background-color: hsl(243, 96%, 9%);
   color: hsl(0, 0%, 100%);
+  font-family: 'BriVariableFont', sans-serif;;
 }
