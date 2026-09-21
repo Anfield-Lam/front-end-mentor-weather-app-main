@@ -1,7 +1,12 @@
 import './App.css'
+import Header from "./Header.jsx"
 
 function App() {
-  return <div></div>
+  return (
+    <app className="app">
+      <Header/>
+    </app>
+  )
 }
 
 export default App;

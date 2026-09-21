@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  height: 30px;
+}
+
+.dropDownList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  background-color: hsl(243, 23%, 24%);
+  border-radius: 7.5px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+.unitsName {
+  padding: 0 5px;
+}
