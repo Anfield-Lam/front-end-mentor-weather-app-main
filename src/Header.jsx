@@ -20,14 +20,16 @@ function Header() {
         {active && (
           <div className="dropDownList">
             <ol>
-              <li>Switch To Imperial</li>
-              <li>Temperature</li>
+              <li className="switch">Switch To Imperial</li>
+              <li className="constant">Temperature</li>
               <li>Celsius (°C)</li>
               <li>Fahrenheit (°F)</li>
-              <li>Wind Speed</li>
+              <div className="bottom-border"></div>
+              <li className="constant">Wind Speed</li>
               <li>km/h</li>
               <li>mph</li>
-              <li>Precipitation</li>
+              <div className="bottom-border"></div>
+              <li className="constant">Precipitation</li>
               <li>Millimeters (mm)</li>
               <li>Inches (in)</li>
             </ol>
