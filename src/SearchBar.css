@@ -1,7 +1,7 @@
 .SearchBarInput {
   display: flex;
   background-color: hsl(243, 27%, 20%);
-  border-radius: 7.5px;
+  border-radius: 10px;
   height: 3.33rem;
   justify-content: left;
   align-items: center;
@@ -12,7 +12,7 @@
   display: flex;
   margin: 0.75rem 0;
   background-color: hsl(233, 67%, 56%);
-  border-radius: 7.5px;
+  border-radius: 10px;
   height: 3.33rem;
   cursor: pointer;
   justify-content: center;
