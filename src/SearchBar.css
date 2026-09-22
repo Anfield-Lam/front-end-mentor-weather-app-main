@@ -1,0 +1,28 @@
+.SearchBarInput {
+  display: flex;
+  background-color: hsl(243, 27%, 20%);
+  border-radius: 7.5px;
+  height: 3.33rem;
+  cursor: text;
+  justify-content: left;
+  align-items: center;
+  color: hsl(240, 6%, 70%);
+  user-select: none;
+}
+
+.SearchBarButton {
+  display: flex;
+  margin: 0.75rem 0;
+  background-color: hsl(233, 67%, 56%);
+  border-radius: 7.5px;
+  height: 3.33rem;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.searchIcon {
+  padding: 0.8rem;
+  padding-left: 1.2rem;
+}
