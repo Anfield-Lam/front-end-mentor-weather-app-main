@@ -3,9 +3,10 @@ import Header from "./Header.jsx"
 
 function App() {
   return (
-    <app className="app">
+    <div className="app">
       <Header/>
-    </app>
+      <div className='aboveSearchBarText'>How's the sky looking today?</div>
+    </div>
   )
 }
 
