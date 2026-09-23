@@ -10,6 +10,7 @@ function App() {
       <div className='aboveSearchBarText'>How's the sky looking today?</div>
       <SearchBar/>
       <CountryWeatherInfoGridBoxes/>
+      <div className='belowFourBoxesText'>Daily forecast</div>
     </div>
   )
 }
