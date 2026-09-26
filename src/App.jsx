@@ -2,6 +2,7 @@ import './App.css'
 import Header from "./Header.jsx"
 import SearchBar from "./SearchBar.jsx"
 import CountryWeatherInfoGridBoxes from "./CountryWeatherInfoGridBoxes.jsx"
+import DailyInfoGridBoxes from "./DailyInfoGridBoxes.jsx"
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <div className='aboveSearchBarText'>How's the sky looking today?</div>
       <SearchBar/>
       <CountryWeatherInfoGridBoxes/>
-      <div className='belowFourBoxesText'>Daily forecast</div>
+      <DailyInfoGridBoxes/>
     </div>
   )
 }

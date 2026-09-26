@@ -1,0 +1,32 @@
+.dailyInfoGridBoxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.belowFourBoxesText {
+  display: flex;
+  width: 100%;
+  max-width: 700px;
+  font-family: 'DmVariableFont', 'DM Sans', sans-serif;
+  align-items: left;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 1rem 0;
+}
+
+.sevenBox {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  height: 500px;
+  border-radius: 18px;
+}
+
+.box {
+  background-color: hsl(243, 27%, 20%);
+  border-radius: 18px;
+}
