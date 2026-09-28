@@ -48,6 +48,8 @@
   font-size: 0.9rem;
   padding: 0 1rem;
   cursor: pointer;
+  user-select: none;
+  anchor-name: --day-selector-button;
 }
 
 .hour {
@@ -66,4 +68,29 @@
 
 .last {
   margin-bottom: -0.8rem;
+}
+
+.dropDownList2 {
+  position: absolute;
+  position-anchor: --day-selector-button;
+  top: anchor(bottom);
+  right: anchor(right);
+  margin-top: 0.5rem;
+  background-color: hsl(243, 23%, 24%);
+  border: 0.5px solid hsl(243, 23%, 30%);
+  border-radius: 7.5px;
+  width: 8rem;
+  padding: 0.4rem;
+}
+
+.dropDownList2 ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropDownList2 ol li{
+  display: flex;
+  padding: 0.5rem;
+  cursor: pointer;
 }

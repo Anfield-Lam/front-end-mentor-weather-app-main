@@ -1,7 +1,10 @@
+import React, { useState } from "react";
 import './HourlyForecast.css'
 import dropDownIcon from "./assets/images/icon-dropdown.svg"
 
 function HourlyForecast() {
+  const [active, setActive] = useState(false)
+   // false => metric, true => imperial
   return (
     <div className='hourlyForecast'>
       <div className='HourlyBox box'>
@@ -9,7 +12,7 @@ function HourlyForecast() {
           <div className='text'>
             Hourly forecast
           </div>
-          <div className='daySelector'>
+          <div className='daySelector' onClick={() => setActive(!active)}>
             <div className='day'>Monday</div>
             <img className="dropDownIcon" src={dropDownIcon} alt="dropDownIcon"/>
           </div>
@@ -40,7 +43,22 @@ function HourlyForecast() {
           <div className='hour 10pm'></div>
           <div className='last hour 11pm'></div>
         </div>
-      </div>      
+      </div> 
+      <div>
+        {active && (
+          <div className="dropDownList2">
+            <ol>
+              <li>Sunday</li>
+              <li>Monday</li>              
+              <li>Tuesday</li>
+              <li>Wednesday</li>
+              <li>Thursday</li>
+              <li>Friday</li>
+              <li>Saturday</li>
+            </ol>
+          </div>
+        )}
+      </div>     
     </div>
   )
 }
