@@ -52,6 +52,7 @@
 
 .hour {
   background-color: hsl(243, 23%, 24%);
+  border: 0.5px solid hsl(243, 23%, 30%);
   border-radius: 10px;
   margin: 0rem 1rem 0.8rem;
   height: 4rem;
