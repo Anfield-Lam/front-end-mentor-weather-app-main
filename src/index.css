@@ -26,3 +26,17 @@ body {
   color: hsl(0, 0%, 100%);
   font-family: 'DmVariableFont', sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 5px;   
+  height: 120px;  
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(243, 27%, 20%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(243, 23%, 24%);
+  border-radius: 6px;
+}

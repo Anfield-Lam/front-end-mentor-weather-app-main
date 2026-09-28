@@ -5,10 +5,10 @@ function CountryWeatherInfoGridBoxes() {
     <div className="countryWeatherInfoGridBoxes">
       <div className="big country"></div>
       <div className="fourBox">
-        <div className="small FeelsLike"></div>
-        <div className="small humidity"></div>
-        <div className="small wind"></div>
-        <div className="small precipitation"></div>
+        <div className="box FeelsLike"></div>
+        <div className="box humidity"></div>
+        <div className="box wind"></div>
+        <div className="box precipitation"></div>
       </div>
     </div>
   )

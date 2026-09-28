@@ -11,3 +11,8 @@
   font-size: 3rem;
   padding: 2rem;
 }
+
+.box {
+  background-color: hsl(243, 27%, 20%);
+  border-radius: 18px;
+}

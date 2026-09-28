@@ -24,8 +24,3 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-
-.small {
-  background-color: hsl(243, 27%, 20%);
-  border-radius: 18px;
-}

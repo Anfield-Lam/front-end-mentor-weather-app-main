@@ -3,6 +3,7 @@ import Header from "./Header.jsx"
 import SearchBar from "./SearchBar.jsx"
 import CountryWeatherInfoGridBoxes from "./CountryWeatherInfoGridBoxes.jsx"
 import DailyInfoGridBoxes from "./DailyInfoGridBoxes.jsx"
+import HourlyForecast from "./HourlyForecast.jsx"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <SearchBar/>
       <CountryWeatherInfoGridBoxes/>
       <DailyInfoGridBoxes/>
+      <HourlyForecast/>
     </div>
   )
 }
