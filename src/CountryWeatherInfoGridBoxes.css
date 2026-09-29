@@ -17,10 +17,51 @@
   background-image: url('./assets/images/bg-today-large.svg');
   background-size: cover;
   margin-bottom: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 1rem;
 }
 
 .fourBox {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+}
+
+.countryDayInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countryTemperatureInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sunnyIcon {
+  width: 100px;
+}
+
+.countryTemperature {
+  font-family: "DmItalicVariableFont";
+  font-size: 5rem;
+  padding-right: 1rem;
+}
+
+.specificCountry {
+  font-family: "DmVariableFont";
+  font-size: 1.4rem;
+  padding: 0.5rem;
+}
+
+.specificDay {
+  font-size: 0.9rem;
+  color: hsl(240, 6%, 70%);
 }
