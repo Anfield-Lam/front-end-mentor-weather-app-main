@@ -4,6 +4,16 @@ import dropDownIcon from "./assets/images/icon-dropdown.svg"
 
 function HourlyForecast() {
   const [active, setActive] = useState(false)
+  const [day, setDay] = useState(1)
+  const dayList = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
    // false => metric, true => imperial
   return (
     <div className='hourlyForecast'>
@@ -13,7 +23,7 @@ function HourlyForecast() {
             Hourly forecast
           </div>
           <div className='daySelector' onClick={() => setActive(!active)}>
-            <div className='day'>Monday</div>
+            <div className='day'>{dayList[day]}</div>
             <img className="dropDownIcon" src={dropDownIcon} alt="dropDownIcon"/>
           </div>
         </div>
@@ -48,13 +58,13 @@ function HourlyForecast() {
         {active && (
           <div className="dropDownList2">
             <ol>
-              <li>Sunday</li>
-              <li>Monday</li>              
-              <li>Tuesday</li>
-              <li>Wednesday</li>
-              <li>Thursday</li>
-              <li>Friday</li>
-              <li>Saturday</li>
+              <li onClick={() => {setDay(0); setActive(!active)}}>Sunday</li>
+              <li onClick={() => {setDay(1); setActive(!active)}}>Monday</li>              
+              <li onClick={() => {setDay(2); setActive(!active)}}>Tuesday</li>
+              <li onClick={() => {setDay(3); setActive(!active)}}>Wednesday</li>
+              <li onClick={() => {setDay(4); setActive(!active)}}>Thursday</li>
+              <li onClick={() => {setDay(5); setActive(!active)}}>Friday</li>
+              <li onClick={() => {setDay(6); setActive(!active)}}>Saturday</li>
             </ol>
           </div>
         )}
