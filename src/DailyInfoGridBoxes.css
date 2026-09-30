@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 40rem;
+  margin-bottom: 1rem;
 }
 
 .belowFourBoxesText {
@@ -22,6 +24,30 @@
   gap: 12px;
   width: 100%;
   max-width: 700px;
-  height: 500px;
+  height: 100%;
   border-radius: 18px;
+}
+
+.dailyBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+.dayWeather {
+  width: 75px;
+}
+
+.dayText {
+  font-size: 1.25rem;
+}
+
+.dayTemperature {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
 }
