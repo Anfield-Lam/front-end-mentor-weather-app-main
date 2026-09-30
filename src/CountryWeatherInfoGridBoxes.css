@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .fourBox {
@@ -46,22 +46,43 @@
 }
 
 .sunnyIcon {
-  width: 100px;
+  width: 125px;
 }
 
 .countryTemperature {
   font-family: "DmItalicVariableFont";
   font-size: 5rem;
+  font-weight: 600;
   padding-right: 1rem;
 }
 
 .specificCountry {
   font-family: "DmVariableFont";
   font-size: 1.4rem;
+  font-weight: 700;
   padding: 0.5rem;
 }
 
 .specificDay {
   font-size: 0.9rem;
   color: hsl(240, 6%, 70%);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0.5rem 1.25rem;
+}
+
+.text {
+  font-size: 1.2rem;
+  color: hsl(240, 6%, 70%);
+}
+
+.data {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
 }

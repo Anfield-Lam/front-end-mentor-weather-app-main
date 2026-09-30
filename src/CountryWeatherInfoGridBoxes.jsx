@@ -15,10 +15,22 @@ function CountryWeatherInfoGridBoxes() {
         </div>
       </div>
       <div className="fourBox">
-        <div className="box FeelsLike"></div>
-        <div className="box humidity"></div>
-        <div className="box wind"></div>
-        <div className="box precipitation"></div>
+        <div className="box feelsLike">
+          <div className="feelsLikeText text">Feels Like</div>
+          <div className="feelsLikeTemperature data">64°</div>
+        </div>
+        <div className="box humidity">
+          <div className="humidityText text">Humidity</div>
+          <div className="humidityPercentage data">46%</div>
+        </div>
+        <div className="box wind">
+          <div className="windText text">Wind</div>
+          <div className="windSpeed data">9 mph</div>
+        </div>
+        <div className="box precipitation">
+          <div className="precipitationText text">Precipitation</div>
+          <div className="precipitationHeight data">0 in</div>
+        </div>
       </div>
     </div>
   )
