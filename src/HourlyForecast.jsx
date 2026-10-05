@@ -20,7 +20,7 @@ function HourlyForecast() {
   const [data, setData] = useState(null);
   useEffect(() => { 
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&current_weather=true&forecast_days=1&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,apparent_temperature"
+      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=1&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,apparent_temperature"
       )
       .then((response) => response.json())
       .then((data) => setData(data))
