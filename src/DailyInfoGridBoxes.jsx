@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./DailyInfoGridBoxes.css"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
+import StormIcon from "./assets/images/icon-storm.webp"
+import RainIcon from "./assets/images/icon-rain.webp"
+import SnowIcon from "./assets/images/icon-snow.webp"
+import FogIcon from "./assets/images/icon-fog.webp"
+import CloudyIcon from "./assets/images/icon-overcast.webp"
+import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
+import DrizzleIcon from "./assets/images/icon-drizzle.webp"
 
 function DailyInfoGridBoxes() {
   const [data, setData] = useState(null);
@@ -13,9 +20,40 @@ function DailyInfoGridBoxes() {
     5: "Fri",
     6: "Sat"
   };
+  const weatherCodeMapping = {
+      0: SunnyIcon,
+      1: SunnyIcon,
+      2: PartlyCloudyIcon,
+      3: CloudyIcon,
+      45: FogIcon,
+      48: FogIcon,
+      51: DrizzleIcon,
+      53: DrizzleIcon,
+      55: DrizzleIcon,
+      56: DrizzleIcon,
+      57: DrizzleIcon,
+      61: RainIcon,
+      63: RainIcon,
+      65: RainIcon,
+      66: RainIcon,
+      67: RainIcon,
+      71: SnowIcon,
+      73: SnowIcon,
+      75: SnowIcon,
+      77: SnowIcon,
+      80: RainIcon,
+      81: RainIcon,
+      82: RainIcon,
+      85: SnowIcon,
+      86: SnowIcon,
+      95: StormIcon,
+      96: StormIcon,
+      97: StormIcon,
+      99: StormIcon
+    }
   useEffect(() => {
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=7&daily=temperature_2m_max,temperature_2m_min"
+      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code"
     )
       .then((response) => response.json())
       .then((data) => setData(data));
@@ -29,7 +67,7 @@ function DailyInfoGridBoxes() {
           return (
             <div className="box dailyBox">
               <div className="dayText">{dayList[day]}</div>
-              <img className="dayWeather" src={SunnyIcon} />
+              <img className="dayWeather" src={weatherCodeMapping[data?.daily?.weather_code?.[day]]} />
               <div className="dayTemperature">
                 <div className="dayTemperatureUpper">{data?.daily?.temperature_2m_max?.[day]}°</div>
                 <div className="dayTemperatureLower">{data?.daily?.temperature_2m_min?.[day]}°</div>
