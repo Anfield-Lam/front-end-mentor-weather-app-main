@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./DailyInfoGridBoxes.css"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
 import StormIcon from "./assets/images/icon-storm.webp"

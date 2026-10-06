@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import { useState, useEffect } from "react"
 import "./CountryWeatherInfoGridBoxes.css"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
 import StormIcon from "./assets/images/icon-storm.webp"
@@ -8,10 +8,8 @@ import FogIcon from "./assets/images/icon-fog.webp"
 import CloudyIcon from "./assets/images/icon-overcast.webp"
 import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
 import DrizzleIcon from "./assets/images/icon-drizzle.webp"
-import { WeatherContext } from "./WeatherContext"
 
 function CountryWeatherInfoGridBoxes() {
-  const { weatherData } = useContext(WeatherContext);
 
   const weatherCodeMapping = {
     0: SunnyIcon,
@@ -44,14 +42,27 @@ function CountryWeatherInfoGridBoxes() {
     97: StormIcon,
     99: StormIcon
   }
-
   const [data, setData] = useState(null);
-  useEffect(() => { 
+  const [cityName, setCityName] = useState(null);
+  useEffect(() => {
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation,weather_code"
-      )
+      `https://nominatim.openstreetmap.org/search?q=Hong Kong&format=jsonv2`
+    )
       .then((response) => response.json())
-      .then((data) => setData(data))
+      .then((cities) => {
+        const city = cities[0];
+        if (!city) {
+          return;
+        } else {
+          setCityName(city.display_name);
+        }
+
+        fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation,weather_code`
+        )
+          .then((response) => response.json())
+          .then((forecastData) => setData(forecastData));
+      });
   }, []);
 
   const date = new Date();
@@ -61,7 +72,7 @@ function CountryWeatherInfoGridBoxes() {
     <div className="countryWeatherInfoGridBoxes">
       <div className="big">
         <div className="countryDayInfo">
-          <div className="specificCountry">Berlin, Germany</div>
+          <div className="specificCountry">{cityName}</div>
           <div className="specificDay">{today}</div>
         </div>
         <div className="countryTemperatureInfo">

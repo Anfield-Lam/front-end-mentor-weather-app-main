@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { WeatherContext } from "./WeatherContext";
+import { useState } from "react";
 import './SearchBar.css'
 import searchIcon from "./assets/images/icon-search.svg"
 

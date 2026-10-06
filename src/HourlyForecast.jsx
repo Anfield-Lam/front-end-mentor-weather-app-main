@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import './HourlyForecast.css'
 import dropDownIcon from "./assets/images/icon-dropdown.svg"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
@@ -16,15 +16,6 @@ function HourlyForecast() {
     "Saturday"
   ]
    // false => metric, true => imperial
-
-  const [data, setData] = useState(null);
-  useEffect(() => { 
-    fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=1&hourly=temperature_2m,relativehumidity_2m,precipitation,windspeed_10m,apparent_temperature"
-      )
-      .then((response) => response.json())
-      .then((data) => setData(data))
-  }, []);
 
   return (
     <div className='hourlyForecast'>
