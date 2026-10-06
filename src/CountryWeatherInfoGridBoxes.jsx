@@ -8,6 +8,7 @@ import FogIcon from "./assets/images/icon-fog.webp"
 import CloudyIcon from "./assets/images/icon-overcast.webp"
 import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
 import DrizzleIcon from "./assets/images/icon-drizzle.webp"
+import tzlookup from "tz-lookup";
 
 function CountryWeatherInfoGridBoxes() {
 
@@ -44,9 +45,10 @@ function CountryWeatherInfoGridBoxes() {
   }
   const [data, setData] = useState(null);
   const [cityName, setCityName] = useState(null);
+  const temp = "HongKong";
   useEffect(() => {
     fetch(
-      `https://nominatim.openstreetmap.org/search?q=Hong Kong&format=jsonv2`
+      `https://nominatim.openstreetmap.org/search?q=${temp}&format=jsonv2`
     )
       .then((response) => response.json())
       .then((cities) => {
@@ -55,13 +57,13 @@ function CountryWeatherInfoGridBoxes() {
           return;
         } else {
           setCityName(city.display_name);
+          const timezoneId = tzlookup(city.lat, city.lon);
+          fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation,weather_code&timezone=${timezoneId}`
+          )
+            .then((response) => response.json())
+            .then((forecastData) => setData(forecastData));
         }
-
-        fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation,weather_code`
-        )
-          .then((response) => response.json())
-          .then((forecastData) => setData(forecastData));
       });
   }, []);
 

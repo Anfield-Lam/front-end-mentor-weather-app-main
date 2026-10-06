@@ -8,6 +8,7 @@ import FogIcon from "./assets/images/icon-fog.webp"
 import CloudyIcon from "./assets/images/icon-overcast.webp"
 import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
 import DrizzleIcon from "./assets/images/icon-drizzle.webp"
+import tzlookup from "tz-lookup";
 
 function DailyInfoGridBoxes() {
   const [data, setData] = useState(null);
@@ -63,13 +64,14 @@ function DailyInfoGridBoxes() {
           return;
         } else {
           setCityName(city.display_name);
-        }
+          const timezoneId = tzlookup(city.lat, city.lon);
 
-        fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code`
-        )
-          .then((response) => response.json())
-          .then((forecastData) => setData(forecastData));
+          fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=${timezoneId}`
+          )
+            .then((response) => response.json())
+            .then((forecastData) => setData(forecastData));
+        }
       });
   }, []);
 
