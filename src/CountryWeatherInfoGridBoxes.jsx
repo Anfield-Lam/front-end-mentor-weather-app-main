@@ -54,12 +54,15 @@ function CountryWeatherInfoGridBoxes() {
       .then((data) => setData(data))
   }, []);
 
+  const date = new Date();
+  const today = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" });
+
   return (
     <div className="countryWeatherInfoGridBoxes">
       <div className="big">
         <div className="countryDayInfo">
           <div className="specificCountry">Berlin, Germany</div>
-          <div className="specificDay">Tuesday, Aug 5, 2025</div>
+          <div className="specificDay">{today}</div>
         </div>
         <div className="countryTemperatureInfo">
           <img src={weatherCodeMapping[data?.current?.weather_code]} className="Icon"/>
