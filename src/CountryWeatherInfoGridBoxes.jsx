@@ -1,15 +1,54 @@
 import React, { useState, useContext, useEffect } from "react"
 import "./CountryWeatherInfoGridBoxes.css"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
+import StormIcon from "./assets/images/icon-storm.webp"
+import RainIcon from "./assets/images/icon-rain.webp"
+import SnowIcon from "./assets/images/icon-snow.webp"
+import FogIcon from "./assets/images/icon-fog.webp"
+import CloudyIcon from "./assets/images/icon-overcast.webp"
+import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
+import DrizzleIcon from "./assets/images/icon-drizzle.webp"
 import { WeatherContext } from "./WeatherContext"
 
 function CountryWeatherInfoGridBoxes() {
   const { weatherData } = useContext(WeatherContext);
 
+  const weatherCodeMapping = {
+    0: SunnyIcon,
+    1: SunnyIcon,
+    2: PartlyCloudyIcon,
+    3: CloudyIcon,
+    45: FogIcon,
+    48: FogIcon,
+    51: DrizzleIcon,
+    53: DrizzleIcon,
+    55: DrizzleIcon,
+    56: DrizzleIcon,
+    57: DrizzleIcon,
+    61: RainIcon,
+    63: RainIcon,
+    65: RainIcon,
+    66: RainIcon,
+    67: RainIcon,
+    71: SnowIcon,
+    73: SnowIcon,
+    75: SnowIcon,
+    77: SnowIcon,
+    80: RainIcon,
+    81: RainIcon,
+    82: RainIcon,
+    85: SnowIcon,
+    86: SnowIcon,
+    95: StormIcon,
+    96: StormIcon,
+    97: StormIcon,
+    99: StormIcon
+  }
+
   const [data, setData] = useState(null);
   useEffect(() => { 
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation"
+      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=1&current=temperature,apparent_temperature,relativehumidity_2m,windspeed_10m,precipitation,weather_code"
       )
       .then((response) => response.json())
       .then((data) => setData(data))
@@ -23,7 +62,7 @@ function CountryWeatherInfoGridBoxes() {
           <div className="specificDay">Tuesday, Aug 5, 2025</div>
         </div>
         <div className="countryTemperatureInfo">
-          <img src={SunnyIcon} className="sunnyIcon"/>
+          <img src={weatherCodeMapping[data?.current?.weather_code]} className="Icon"/>
           <div className="countryTemperature">{data?.current?.temperature}°</div>
         </div>
       </div>
