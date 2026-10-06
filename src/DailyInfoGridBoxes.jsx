@@ -51,12 +51,26 @@ function DailyInfoGridBoxes() {
       97: StormIcon,
       99: StormIcon
     }
+  const [cityName, setCityName] = useState(null);
   useEffect(() => {
     fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=22.32&longitude=114.17&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code"
+      `https://nominatim.openstreetmap.org/search?q=Hong Kong&format=jsonv2`
     )
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((cities) => {
+        const city = cities[0];
+        if (!city) {
+          return;
+        } else {
+          setCityName(city.display_name);
+        }
+
+        fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code`
+        )
+          .then((response) => response.json())
+          .then((forecastData) => setData(forecastData));
+      });
   }, []);
 
   return (
@@ -64,9 +78,15 @@ function DailyInfoGridBoxes() {
       <div className='belowFourBoxesText'>Daily forecast</div>
       <div className="sevenBox">
         {Array.from({ length: 7 }, (_, day) => {
+          let weekdayShort = "";
+          if (data?.daily?.time?.[day]) {
+            weekdayShort = new Date(data?.daily?.time?.[day]).toLocaleDateString("en-US", {
+              weekday: "short",
+            });
+          }
           return (
             <div className="box dailyBox">
-              <div className="dayText">{dayList[day]}</div>
+              <div className="dayText">{weekdayShort}</div>
               <img className="dayWeather" src={weatherCodeMapping[data?.daily?.weather_code?.[day]]} />
               <div className="dayTemperature">
                 <div className="dayTemperatureUpper">{data?.daily?.temperature_2m_max?.[day]}°</div>
