@@ -22,40 +22,40 @@ function DailyInfoGridBoxes() {
     6: "Sat"
   };
   const weatherCodeMapping = {
-      0: SunnyIcon,
-      1: SunnyIcon,
-      2: PartlyCloudyIcon,
-      3: CloudyIcon,
-      45: FogIcon,
-      48: FogIcon,
-      51: DrizzleIcon,
-      53: DrizzleIcon,
-      55: DrizzleIcon,
-      56: DrizzleIcon,
-      57: DrizzleIcon,
-      61: RainIcon,
-      63: RainIcon,
-      65: RainIcon,
-      66: RainIcon,
-      67: RainIcon,
-      71: SnowIcon,
-      73: SnowIcon,
-      75: SnowIcon,
-      77: SnowIcon,
-      80: RainIcon,
-      81: RainIcon,
-      82: RainIcon,
-      85: SnowIcon,
-      86: SnowIcon,
-      95: StormIcon,
-      96: StormIcon,
-      97: StormIcon,
-      99: StormIcon
-    }
+    0: SunnyIcon,
+    1: SunnyIcon,
+    2: PartlyCloudyIcon,
+    3: CloudyIcon,
+    45: FogIcon,
+    48: FogIcon,
+    51: DrizzleIcon,
+    53: DrizzleIcon,
+    55: DrizzleIcon,
+    56: DrizzleIcon,
+    57: DrizzleIcon,
+    61: RainIcon,
+    63: RainIcon,
+    65: RainIcon,
+    66: RainIcon,
+    67: RainIcon,
+    71: SnowIcon,
+    73: SnowIcon,
+    75: SnowIcon,
+    77: SnowIcon,
+    80: RainIcon,
+    81: RainIcon,
+    82: RainIcon,
+    85: SnowIcon,
+    86: SnowIcon,
+    95: StormIcon,
+    96: StormIcon,
+    97: StormIcon,
+    99: StormIcon
+  }
   const [cityName, setCityName] = useState(null);
   useEffect(() => {
     fetch(
-      `https://nominatim.openstreetmap.org/search?q=Hong Kong&format=jsonv2`
+      `https://nominatim.openstreetmap.org/search?q=HongKong&format=jsonv2`
     )
       .then((response) => response.json())
       .then((cities) => {
