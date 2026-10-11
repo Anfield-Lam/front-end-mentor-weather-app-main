@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import './HourlyForecast.css'
 import dropDownIcon from "./assets/images/icon-dropdown.svg"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
@@ -10,6 +10,7 @@ import CloudyIcon from "./assets/images/icon-overcast.webp"
 import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
 import DrizzleIcon from "./assets/images/icon-drizzle.webp"
 import tzlookup from "tz-lookup";
+import { WeatherContext } from "./WeatherContext";
 
 function HourlyForecast() {
   const weatherCodeMapping = {
@@ -54,6 +55,7 @@ function HourlyForecast() {
     weekday: "long",
   });
   const todayIndex = weekDayNames.indexOf(today);
+  const { unit } = useContext(WeatherContext);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -75,10 +77,18 @@ function HourlyForecast() {
         }
 
         const timezoneId = tzlookup(city.lat, city.lon);
-        const forecastResponse = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&hourly=temperature_2m,weather_code&timezone=${timezoneId}`,
-          { signal: controller.signal }
-        );
+        let forecastResponse;
+        if (unit) {
+          forecastResponse = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&hourly=temperature_2m,weather_code&timezone=${timezoneId}&temperature_unit=fahrenheit`,
+            { signal: controller.signal }
+          );
+        } else {
+          forecastResponse = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&hourly=temperature_2m,weather_code&timezone=${timezoneId}`,
+            { signal: controller.signal }
+          );
+        }
         if (!forecastResponse.ok) {
           throw new Error(`Weather forecast request failed (${forecastResponse.status})`);
         }
@@ -99,7 +109,7 @@ function HourlyForecast() {
 
     loadForecast();
     return () => controller.abort();
-  }, []);
+  }, [unit]);
 
   const selectedHours = selectedDate && data?.hourly?.time
     ? data.hourly.time.reduce((hours, time, index) => {

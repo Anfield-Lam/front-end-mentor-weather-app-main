@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Header.css"
 import logo from "./assets/images/logo.svg"
 import units from "./assets/images/icon-units.svg"
 import dropDownIcon from "./assets/images/icon-dropdown.svg"
 import checkmark from "./assets/images/icon-checkmark.svg"
+import { WeatherContext } from "./WeatherContext";
 
 function Header() {
   const [active, setActive] = useState(false)
-  const [unit, setUnit] = useState(false) // false => metric, true => imperial
+  const { unit, setUnit } = useContext(WeatherContext) // false => metric, true => imperial
   return (
     <>
       <div className="header">

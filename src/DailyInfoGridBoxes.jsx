@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./DailyInfoGridBoxes.css"
 import SunnyIcon from "./assets/images/icon-sunny.webp"
 import StormIcon from "./assets/images/icon-storm.webp"
@@ -9,6 +9,7 @@ import CloudyIcon from "./assets/images/icon-overcast.webp"
 import PartlyCloudyIcon from "./assets/images/icon-partly-cloudy.webp"
 import DrizzleIcon from "./assets/images/icon-drizzle.webp"
 import tzlookup from "tz-lookup";
+import { WeatherContext } from "./WeatherContext";
 
 function DailyInfoGridBoxes() {
   const [data, setData] = useState(null);
@@ -53,6 +54,7 @@ function DailyInfoGridBoxes() {
     99: StormIcon
   }
   const [cityName, setCityName] = useState(null);
+  const { unit } = useContext(WeatherContext);
   useEffect(() => {
     fetch(
       `https://nominatim.openstreetmap.org/search?q=HongKong&format=jsonv2`
@@ -66,14 +68,22 @@ function DailyInfoGridBoxes() {
           setCityName(city.display_name);
           const timezoneId = tzlookup(city.lat, city.lon);
 
-          fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=${timezoneId}`
-          )
-            .then((response) => response.json())
-            .then((forecastData) => setData(forecastData));
+          if (unit) {
+            fetch(
+              `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=${timezoneId}&temperature_unit=fahrenheit`
+            )
+              .then((response) => response.json())
+              .then((forecastData) => setData(forecastData));
+          } else {
+            fetch(
+              `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=${timezoneId}`
+            )
+              .then((response) => response.json())
+              .then((forecastData) => setData(forecastData));
+          }
         }
       });
-  }, []);
+  }, [unit]);
 
   return (
     <div className="dailyInfoGridBoxes">

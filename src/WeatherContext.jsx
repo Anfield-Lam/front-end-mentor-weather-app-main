@@ -9,6 +9,11 @@ export const WeatherProvider = ({ children }) => {
     const saved = localStorage.getItem("weatherData");
     return saved ? JSON.parse(saved) : null;
   });
+  const [unit, setUnit] = useState(() => {
+    // Load from localStorage if available
+    const savedUnit = localStorage.getItem("unit");
+    return savedUnit ? JSON.parse(savedUnit) : false; // false => metric, true => imperial
+  });
 
   // Whenever weatherData changes, save to localStorage
   useEffect(() => {
@@ -17,8 +22,13 @@ export const WeatherProvider = ({ children }) => {
     }
   }, [weatherData]);
 
+  // Whenever unit changes, save to localStorage
+  useEffect(() => {
+    localStorage.setItem("unit", JSON.stringify(unit));
+  }, [unit]);
+
   return (
-    <WeatherContext.Provider value={{ weatherData, setWeatherData }}>
+    <WeatherContext.Provider value={{ weatherData, setWeatherData, unit, setUnit }}>
       {children}
     </WeatherContext.Provider>
   );
