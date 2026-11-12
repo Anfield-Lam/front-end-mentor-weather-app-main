@@ -46,11 +46,10 @@ function CountryWeatherInfoGridBoxes() {
   }
   const [data, setData] = useState(null);
   const [cityName, setCityName] = useState(null);
-  const { unit } = useContext(WeatherContext) // false => metric, true => imperial
-  const temp = "HongKong";
+  const { unit, savedCity } = useContext(WeatherContext) // false => metric, true => imperial
   useEffect(() => {
     fetch(
-      `https://nominatim.openstreetmap.org/search?q=${temp}&format=jsonv2`
+      `https://nominatim.openstreetmap.org/search?q=${savedCity}&format=jsonv2`
     )
       .then((response) => response.json())
       .then((cities) => {
@@ -75,7 +74,7 @@ function CountryWeatherInfoGridBoxes() {
           }
         }
       });
-  }, [unit]);
+  }, [unit, savedCity]);
 
   const date = new Date();
   const today = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" });

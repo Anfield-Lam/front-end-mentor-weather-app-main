@@ -23,7 +23,7 @@ function Header() {
         {active && (
           <div className="dropDownList">
             <ol>
-              <li className="switch" onClick={() => setUnit(!unit)}>Switch To {unit ? "Metric" : "Imperial"}</li>
+              <li className="switch" onClick={() => {setUnit(!unit); setActive(!active)}}>Switch To {unit ? "Metric" : "Imperial"}</li>
               <li className="constant">Temperature</li>
               <li className={!unit && "selected"}>Celsius (°C) {!unit && <div className="checkmark-container"><img src={checkmark}/></div>}</li>
               <li className={unit && "selected"}>Fahrenheit (°F) {unit && <div className="checkmark-container"><img src={checkmark}/></div>}</li>

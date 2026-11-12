@@ -55,7 +55,7 @@ function HourlyForecast() {
     weekday: "long",
   });
   const todayIndex = weekDayNames.indexOf(today);
-  const { unit } = useContext(WeatherContext);
+  const { unit, savedCity } = useContext(WeatherContext);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -63,7 +63,7 @@ function HourlyForecast() {
     async function loadForecast() {
       try {
         const cityResponse = await fetch(
-          "https://nominatim.openstreetmap.org/search?q=HongKong&format=jsonv2",
+          `https://nominatim.openstreetmap.org/search?q=${savedCity}&format=jsonv2`,
           { signal: controller.signal }
         );
         if (!cityResponse.ok) {
@@ -109,7 +109,7 @@ function HourlyForecast() {
 
     loadForecast();
     return () => controller.abort();
-  }, [unit]);
+  }, [unit, savedCity]);
 
   const selectedHours = selectedDate && data?.hourly?.time
     ? data.hourly.time.reduce((hours, time, index) => {

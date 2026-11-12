@@ -54,10 +54,10 @@ function DailyInfoGridBoxes() {
     99: StormIcon
   }
   const [cityName, setCityName] = useState(null);
-  const { unit } = useContext(WeatherContext);
+  const { unit, savedCity } = useContext(WeatherContext)
   useEffect(() => {
     fetch(
-      `https://nominatim.openstreetmap.org/search?q=HongKong&format=jsonv2`
+      `https://nominatim.openstreetmap.org/search?q=${savedCity}&format=jsonv2`
     )
       .then((response) => response.json())
       .then((cities) => {
@@ -83,7 +83,7 @@ function DailyInfoGridBoxes() {
           }
         }
       });
-  }, [unit]);
+  }, [unit, savedCity]);
 
   return (
     <div className="dailyInfoGridBoxes">

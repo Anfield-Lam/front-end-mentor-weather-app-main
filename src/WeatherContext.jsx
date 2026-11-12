@@ -14,6 +14,11 @@ export const WeatherProvider = ({ children }) => {
     const savedUnit = localStorage.getItem("unit");
     return savedUnit ? JSON.parse(savedUnit) : false; // false => metric, true => imperial
   });
+  const [savedCity, setCity] = useState(() => {
+    // Load from localStorage if available
+    const savedCity = localStorage.getItem("savedCity");
+    return savedCity ? JSON.parse(savedCity) : "Hong Kong"; // Default city
+  });
 
   // Whenever weatherData changes, save to localStorage
   useEffect(() => {
@@ -27,8 +32,13 @@ export const WeatherProvider = ({ children }) => {
     localStorage.setItem("unit", JSON.stringify(unit));
   }, [unit]);
 
+  // Whenever city changes, save to localStorage
+  useEffect(() => {
+    localStorage.setItem("savedCity", JSON.stringify(savedCity));
+  }, [savedCity]);
+
   return (
-    <WeatherContext.Provider value={{ weatherData, setWeatherData, unit, setUnit }}>
+    <WeatherContext.Provider value={{ weatherData, setWeatherData, unit, setUnit, savedCity, setCity }}>
       {children}
     </WeatherContext.Provider>
   );
