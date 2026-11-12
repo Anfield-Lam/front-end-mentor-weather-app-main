@@ -9,7 +9,7 @@ function SearchBar() {
   const [text, setText] = useState("");
   const { setCity } = useContext(WeatherContext);
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && text.trim() !== "") {
       setCity(text);
       setText("");
     }
@@ -31,8 +31,10 @@ function SearchBar() {
         />
       </div>
       <div className='SearchBarButton' onClick={() => {
-        setCity(text);
-        setText("");
+        if (text.trim() !== "") {
+          setCity(text);
+          setText("");
+        }
       }}>
         Search
       </div>
