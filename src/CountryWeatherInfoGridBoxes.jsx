@@ -82,7 +82,7 @@ function CountryWeatherInfoGridBoxes() {
   const today = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" });
 
   if (noResult) {
-    return <div className="noResult">City not found</div>;
+    return <div className="noResult">No search results found!</div>;
   }
 
   return (

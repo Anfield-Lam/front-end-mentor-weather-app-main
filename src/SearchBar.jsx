@@ -7,11 +7,26 @@ import { WeatherContext } from "./WeatherContext";
 
 function SearchBar() {
   const [text, setText] = useState("");
-  const { setCity } = useContext(WeatherContext);
+  const [searchError, setSearchError] = useState(null);
+  const { searchCity } = useContext(WeatherContext);
+  const submitSearch = async () => {
+    const city = text.trim();
+    if (!city) {
+      return;
+    }
+
+    setText("");
+    setSearchError(null);
+    try {
+      await searchCity(city);
+    } catch {
+      setSearchError("Unable to search for this city. Please try again.");
+    }
+  };
+
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && text.trim() !== "") {
-      setCity(text);
-      setText("");
+      void submitSearch();
     }
     else if (!/^[a-zA-Z]$/.test(event.key) && event.key !== "Backspace" && event.key !== " ") {
       event.preventDefault();
@@ -30,14 +45,10 @@ function SearchBar() {
           placeholder='Search for a place...'
         />
       </div>
-      <div className='SearchBarButton' onClick={() => {
-        if (text.trim() !== "") {
-          setCity(text);
-          setText("");
-        }
-      }}>
+      <div className='SearchBarButton' onClick={() => void submitSearch()}>
         Search
       </div>
+      {searchError && <div role="alert">{searchError}</div>}
     </>
   )
 }
