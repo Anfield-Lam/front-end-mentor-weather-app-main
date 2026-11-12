@@ -46,7 +46,7 @@ function CountryWeatherInfoGridBoxes() {
   }
   const [data, setData] = useState(null);
   const [cityName, setCityName] = useState(null);
-  const { unit, savedCity } = useContext(WeatherContext) // false => metric, true => imperial
+  const { unit, savedCity, noResult, setNoResult } = useContext(WeatherContext) // false => metric, true => imperial
   useEffect(() => {
     fetch(
       `https://nominatim.openstreetmap.org/search?q=${savedCity}&format=jsonv2`
@@ -55,8 +55,10 @@ function CountryWeatherInfoGridBoxes() {
       .then((cities) => {
         const city = cities[0];
         if (!city) {
+          setNoResult(true);
           return;
         } else {
+          setNoResult(false);
           setCityName(city.display_name);
           const timezoneId = tzlookup(city.lat, city.lon);
           if (unit) {
@@ -74,10 +76,14 @@ function CountryWeatherInfoGridBoxes() {
           }
         }
       });
-  }, [unit, savedCity]);
+  }, [unit, savedCity, setNoResult]);
 
   const date = new Date();
   const today = date.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", year: "numeric" });
+
+  if (noResult) {
+    return <div className="noResult">City not found</div>;
+  }
 
   return (
     <div className="countryWeatherInfoGridBoxes">

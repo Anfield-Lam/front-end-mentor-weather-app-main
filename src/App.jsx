@@ -2,9 +2,7 @@ import './App.css'
 import { WeatherProvider } from "./WeatherContext";
 import Header from "./Header.jsx"
 import SearchBar from "./SearchBar.jsx"
-import CountryWeatherInfoGridBoxes from "./CountryWeatherInfoGridBoxes.jsx"
-import DailyInfoGridBoxes from "./DailyInfoGridBoxes.jsx"
-import HourlyForecast from "./HourlyForecast.jsx"
+import ResultContext from "./ResultContext.jsx"
 
 function App() {
   return (
@@ -13,9 +11,7 @@ function App() {
         <Header/>
         <div className='aboveSearchBarText'>How's the sky looking today?</div>
         <SearchBar/>
-        <CountryWeatherInfoGridBoxes/>
-        <DailyInfoGridBoxes/>
-        <HourlyForecast/>
+        <ResultContext/>
       </WeatherProvider>
     </div>
   )
