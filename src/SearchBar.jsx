@@ -30,7 +30,12 @@ function SearchBar() {
           placeholder='Search for a place...'
         />
       </div>
-      <div className='SearchBarButton'>Search</div>
+      <div className='SearchBarButton' onClick={() => {
+        setCity(text);
+        setText("");
+      }}>
+        Search
+      </div>
     </>
   )
 }
